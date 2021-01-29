@@ -6,7 +6,7 @@ resource "aws_instance" "terraform_sample_ec2" {
   ami                         = var.ami_id
   instance_type               = var.ec2_instance_type
   associate_public_ip_address = true
-  user_data_base64            = "apt update && apt install apache2"
+  user_data                   = filebase64("${path.module}/files/user_data.sh")
 
   tags = {
     Name = "Terraform trial EC2"
