@@ -7,6 +7,7 @@ resource "aws_instance" "terraform_sample_ec2" {
   instance_type               = var.ec2_instance_type
   associate_public_ip_address = true
   user_data                   = filebase64("${path.module}/files/user_data.sh")
+  key_name                    = "tf-cloud-trial"
 
   security_groups = [
     aws_security_group.terraform_sample_sg.name
@@ -23,6 +24,13 @@ resource "aws_security_group" "terraform_sample_sg" {
     protocol    = "TCP"
     to_port     = 80
     cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port   = 22
+    protocol    = "TCP"
+    to_port     = 22
+    cidr_blocks = ["111.235.88.84/32"]
   }
 
   egress {
