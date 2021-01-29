@@ -7,6 +7,9 @@ resource "aws_instance" "terraform_sample_ec2" {
   instance_type               = var.ec2_instance_type
   associate_public_ip_address = true
   user_data                   = filebase64("${path.module}/files/user_data.sh")
+  security_groups = [
+    aws_security_group.terraform_sample_sg.id
+  ]
 
   tags = {
     Name = "Terraform trial EC2"
