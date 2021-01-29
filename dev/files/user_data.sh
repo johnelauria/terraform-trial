@@ -1,4 +1,6 @@
 #!/bin/bash -xe
 
-apt update
-apt install -y apache2
+yum update
+yum install -y httpd
+echo 'Hello world!' > /var/www/html/index.html
+sudo systemctl start httpd
