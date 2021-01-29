@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "spot_request" {
-  source            = "../modules/"
+  source            = "../modules/apache-spot-instance"
   ami_id            = var.ami_id
   ec2_instance_type = var.ec2_instance_type
   spot_price        = var.spot_price
