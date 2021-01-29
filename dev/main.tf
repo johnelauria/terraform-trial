@@ -2,19 +2,20 @@ provider "aws" {
   region = "ap-northeast-1"
 }
 
-resource "aws_instance" "terraform_sample_ec2" {
+resource "aws_spot_instance_request" "terraform_sample_ec2" {
   ami                         = var.ami_id
   instance_type               = var.ec2_instance_type
   associate_public_ip_address = true
   user_data                   = filebase64("${path.module}/files/user_data.sh")
   key_name                    = "tf-cloud-trial"
+  spot_price                  = var.spot_price
 
   security_groups = [
     aws_security_group.terraform_sample_sg.name
   ]
 
   tags = {
-    Name = "Terraform trial EC2"
+    Name = "Terraform trial EC2 spot"
   }
 }
 
