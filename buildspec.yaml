@@ -5,8 +5,6 @@ phases:
     commands:
       - apt install -y zip
   build:
-    run-as: Linux-user-name
-    on-failure: ABORT | CONTINUE
     commands:
       - zip -r sample.zip .
 artifacts:
