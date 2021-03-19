@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - yum install zip
+  build:
+    run-as: Linux-user-name
+    on-failure: ABORT | CONTINUE
+    commands:
+      - zip -r sample.zip .
+artifacts:
+  files:
+    - '**/*'
+  name: build_output
+  enable-symlinks: yes
